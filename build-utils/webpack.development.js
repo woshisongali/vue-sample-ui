@@ -5,17 +5,17 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.styl$/,
+        test: /\.styl(us)?$/,
         use: [
-          "vue-style-loader", 
-          "css-loader", 
-          "stylus-loader"
+          'vue-style-loader',
+          'css-loader',
+          'stylus-loader'
         ],
         exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: [ "vue-style-loader", "css-loader"],
+        use: [ "style-loader", "css-loader"],
         exclude: /node_modules/
       },
       {

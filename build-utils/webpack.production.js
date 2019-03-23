@@ -38,7 +38,7 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.styl$/,
+        test: /\.styl(us)?$/,
         use: [
           MiniCssExtractPlugin.loader, 
           "css-loader",
