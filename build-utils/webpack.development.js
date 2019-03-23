@@ -6,11 +6,17 @@ module.exports = () => ({
     rules: [
       {
         test: /\.styl$/,
-        use: ["style-loader", "css-loader", "stylus-loader"]
+        use: [
+          "vue-style-loader", 
+          "css-loader", 
+          "stylus-loader"
+        ],
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [ "vue-style-loader", "css-loader"],
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,

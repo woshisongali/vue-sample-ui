@@ -39,7 +39,11 @@ module.exports = () => ({
     rules: [
       {
         test: /\.styl$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "stylus-loader"]
+        use: [
+          MiniCssExtractPlugin.loader, 
+          "css-loader",
+           "stylus-loader"
+        ]
         // use: ["style-loader", "css-loader", "stylus-loader"]
       },
       {

@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpackMerge = require("webpack-merge");
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path')
 const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
 
@@ -48,11 +48,13 @@ module.exports = ({
           }
         ]
       },
+
       resolve: {
           // alias: {
           //     'vue': 'vue/dist/vue.js'
           // }
       },
+
       plugins: [
         new HtmlWebpackPlugin({
           // template: './pages/program1/index/index.html'
