@@ -1,4 +1,4 @@
-###多选框列表 示例参考 
+### 多选框列表 示例参考 
 ```html example
   <check-group v-model="checkArr">
     <check-box label="1">
