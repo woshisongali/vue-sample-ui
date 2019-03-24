@@ -2,17 +2,23 @@
   <div>
     <down-select-only
         :orginOpts="productnameOpts"
-        type="hrdProdName"
         v-model="productName"
-        validateRule="required|max:30"
         indexKey="indexKey"
         asycn
       ></down-select-only>
+      <down-select
+        :orginOpts="factoryOPts"
+        v-model="factoryName"
+        indexKey="indexKey"
+        styleVal="width: 120px;"
+        asycn
+      ></down-select>
   </div>
 </template>
 
 <script>
 import DownSelectOnly from './DownSelectOnly.vue'
+import DownSelect from './DownSelect.vue'
 export default {
   data () {
     return {
@@ -25,11 +31,14 @@ export default {
         {value: '5', label: 'the fff'},
         {value: '6', label: 'the dddddd'}
 
-      ]
+      ],
+      factoryName: '武钢',
+      factoryOPts: []
     }
   },
   components: {
-    DownSelectOnly
+    DownSelectOnly,
+    DownSelect
   }
 }
 </script>

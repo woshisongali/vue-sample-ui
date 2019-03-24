@@ -1,6 +1,20 @@
 const webpack = require('webpack')
-console.log('==========================')
+const server = require('./server')
+// require('')
+const mockConfig = {
+  '/birds': './birds',
+  '/downTest': '../components/down-select/mock/product'
+}
 module.exports = () => ({
+  devServer: {
+    port: 7000,
+    proxy: {
+    },
+    before (app) {
+      console.log('============= before server')
+      server.start(mockConfig)
+    }
+  },
   devtool: 'eval-source-map',
   module: {
     rules: [

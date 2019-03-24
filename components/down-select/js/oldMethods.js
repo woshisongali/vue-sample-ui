@@ -12,9 +12,9 @@ export  const methods = {
   close () {
     this.openList = false
   },
-  mainHandler (e) {
+  // mainHandler (e) {
     
-  },
+  // },
   handlerInput (e) {
     let value = e.target.value
     this.chosedItem.label = value
@@ -29,8 +29,8 @@ export  const methods = {
     this.focusing = false
   },
 
-  keyupInput (e) {
-  },
+  // keyupInput (e) {
+  // },
   
   filterOpts () {
     if (!this.isFilter) {
