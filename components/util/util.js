@@ -40,12 +40,16 @@ export const clone = (source) => {
     }
   } else if (source instanceof Object) {
     target = {}
-    for (key in source) {
+    for (let key in source) {
+      // console.log(source[key])
       target[key] = clone(source[key])
     }
+    // console.log('======')
+    // console.log(target)
   } else {
     return source
   }
+  return target
 }
 
 

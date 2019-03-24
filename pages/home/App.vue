@@ -42,14 +42,7 @@
   <!-- <fe-radio v-model="radioVal" label="1">男</fe-radio>
   <fe-radio v-model="radioVal" label="2">女</fe-radio> -->
 
-  <down-select
-        :orginOpts="productnameOpts"
-        type="hrdProdName"
-        v-model="productName"
-        validateRule="required|max:30"
-        indexKey="indexKey"
-        asycn
-      ></down-select>
+  <down-select-test></down-select-test>
 
 </div>
   
@@ -66,7 +59,7 @@
   // import FeToast from 'components/toast/Toast.vue'
   import FePagination from '../../components/pagination/pagination.js'
   import FeRadio from '../../components/radio/radio.vue'
-  import DownSelect from '../../components/down-select/DownSelect.vue'
+  import DownSelectTest from '../../components/down-select/test.vue'
   
   export default{
     data () {
@@ -78,12 +71,7 @@
         showDialog: false,
         toast1: true,
         radioVal: "1",
-        checkArr: ['2'],
-        productName: '22',
-        productnameOpts: [
-          {value: '1', label: 'the first'},
-          {value: '2', label: 'the second'}
-        ]
+        checkArr: ['2']
       }
     },
     mounted () {
@@ -102,7 +90,7 @@
       // FeToast,
       FePagination,
       FeRadio,
-      DownSelect
+      DownSelectTest
     },
     methods: {
       chgManual () {

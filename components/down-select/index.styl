@@ -1,0 +1,86 @@
+.down-select-mod input:focus {outline: none;}
+.down-select-mod {
+  position relative
+  .select-inners{
+    position relative
+    display inline-block
+    &.small-abs {
+      position absolute
+      width 60px
+      top 50% 
+      margin-top -30px
+    }
+  }
+  .down-select-input {
+    width 86px
+    height 28px
+    padding 0px 5px
+    border solid 1px #e5e5e5
+    &.box-erro{
+      border solid 1px #ff7300
+    }
+  }
+  .select-icon {
+    position absolute
+    display block
+    width 9px 
+    height 6px 
+    // border 1px solid red
+    top 50%
+    margin-top -3px
+    right 6px
+    background url(./i/arrow-down.png) no-repeat
+    background-size 8px 4px
+    &.focus {
+      background url(./i/arrow-down-focus.png) no-repeat
+      background-size 8px 4px
+    }
+  }
+  .options-wrapper {
+    position absolute
+    z-index 5
+    top 34px
+    width 120px
+    padding 8px 0
+    max-height 208px
+    background #ffffff
+    border 1px solid #e5e5e5
+    box-shadow 0 0 16px 0 rgba(197, 197, 197, 0.50)
+    overflow auto
+    &.disable-scroll{
+      overflow hidden
+    }
+  }
+  .small-abs {
+    .options-wrapper {
+      text-align left 
+    }
+  }
+  .option-ele {
+    padding 0 14px
+    height 32px
+    line-height 32px
+    font-size 12px
+    color #656565
+    cursor pointer
+    // text-overflow ellipsis
+    overflow hidden
+    // white-space nowrap
+    // @TODO
+    // &:hover,
+    &:focus,
+    &.hover,
+    &:hover{
+      color #316CCB
+      background-color #F1F1F1
+    }
+    &.selected{
+      color #FFF
+      background #316CCB
+      // &:hover, &.hover{
+      //   color #316CCB
+      //   background-color #F1F1F1
+      // }
+    }
+  }
+}

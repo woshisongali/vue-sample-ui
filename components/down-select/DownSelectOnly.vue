@@ -1,5 +1,6 @@
 <template>
   <div class="down-select-mod" @click="mainHandler($event)">
+     {{chosedItem}}
     <div class="select-inners" 
     :style="divStyle"
     :class="[extroClass ? extroClass : '']">
@@ -8,7 +9,7 @@
         :style="styleVal"
         :placeholder="placeholder"
         :value="chosedItem.label"
-        :readonly="readOnlyStr ? true : false"
+        readonly
         autocomplete="off"
         @input="handlerInput($event)"
         @focus="focusInput($event)"
@@ -19,9 +20,8 @@
         @keydown.enter.prevent="keyboardCtroll('enter')"
       >
 
-      <i v-if="showIcon" class="select-icon" :class="[openList ? 'focus': '']"></i>
+      <i  class="select-icon" :class="[openList ? 'focus': '']"></i>
 
-      {{chosedItem}}
 
     <!-- <span >{{ errors.first('inputvalid') }}</span> -->
     <div v-if="openList && opts.length > 0" 
@@ -34,6 +34,7 @@
         :class="{'selected': chosedItem.value === item.value, 'hover': index == keyChoseItem.num}"
          v-for="(item, index) in opts" 
          :downuuid="downUUid"
+         :data-index="index"
          :key="index">
           {{item.label}}
         </li>
@@ -46,51 +47,22 @@
 </template>
 
 <script>
+import './index.styl'
 import Vue from 'vue'
 import {
   containsEle, 
   getDownSelectuuid,
   clone
 } from '../util/util.js'
-import {
-  offsetPosition, 
-  eleSize
-} from '../util/dom.js'
+
 // import { mapFields } from 'vee-validate'
 import ListOpera from './js/listOpera.js'
-import {methods} from './js/downMethods.js'
-// import PopertHint from '../commons/poper-hint/index'
 
-// function filterOpts (arr, valWord) {
-// return arr.filter((o) => {
-//     if (valWord === void 0) {
-//       return true
-//     }
-//     return o.value.indexOf(valWord) > -1
-//   })
-// }
+import {
+  methods, 
+  changeScrollTop
+} from './js/publicMethods.js'
 
-function changeScrollTop (closeEle, cb) {
-  let isScroll = false
-  if (closeEle.length > 0) {
-    let ele = closeEle[0]
-    let position = offsetPosition(ele)
-    let eleHeight = eleSize(ele).height
-    let visiHeight = parseInt(position.top) + parseInt(eleHeight)
-    let parentWapper = ele.parentNode.parentNode
-    let parentHeight = parseInt(eleSize(parentWapper).height)
-    if (visiHeight > parentHeight) {
-      parentWapper.scrollTop = parseInt(visiHeight/parentHeight) * parentHeight - eleHeight
-      isScroll = true
-    } else {
-      parentWapper.scrollTop = 0
-      isScroll = false
-    }
-  }
-  if (closeEle.length > 0 && cb) {
-    cb(isScroll)
-  }
-}
 
 export default {
   props: {
@@ -111,34 +83,7 @@ export default {
       type: String,
       default: ''
     },
-    showIcon: {
-      type: Boolean,
-      default: false
-    },
-    readOnlyStr: {
-      type: Boolean,
-      default: false
-    },
     
-    // 异步请求接口时设为true
-    asycn: {
-      type: Boolean,
-      default: false
-    },
-    // 对于固定的下拉数组不进行筛选
-    isFilter: {
-      type: Boolean,
-      default: false
-    },
-    // busListName: {
-    //   type: String,
-    //   default: null
-    // },
-    // // 功能模块名称， 
-    // type: {
-    //   type: String,
-    //   default: null
-    // },
     // 额外的class注入
     extroClass: {
       type: String,
@@ -146,10 +91,6 @@ export default {
     },
     value: {
       type: [String, Number]
-    },
-    focusIsFilter: {
-      type: Boolean,
-      default: false
     }
   },
   data () {
@@ -185,10 +126,6 @@ export default {
       let choseNum
       opts.forEach((item, index) => {
         if (String(item.value) === String(this.value)) {
-          // let cloneItem = clone(item)
-          // if (cloneItem) {
-          //   chosed = cloneItem
-          // }
           choseNum = index
           return false
         }
@@ -234,15 +171,9 @@ export default {
   },
 
   watch: {
-    curval: {
-      immediate: true,
-      handler (val, oldval) {
-        // 对于异步调用方案
-        if (this.asycn && this.focusing) {
-          // this.$parent.changeWorder(val, this.type)
-        }
-        // this.$emit('input', this.chosedItem.value)
-      }
+
+    chosedItem (item, oldItem) {
+      this.$emit('input', item.value)
     },
 
     // 如果有数据带入的话，首次focusing没有请求问题
@@ -280,95 +211,5 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-input:focus {outline: none;}
-.down-select-mod {
-  position relative
-  .select-inners{
-    position relative
-    display inline-block
-    &.small-abs {
-      position absolute
-      width 60px
-      top 50% 
-      margin-top -30px
-    }
-  }
-  .down-select-input {
-    width 86px
-    height 28px
-    padding 0px 5px
-    border solid 1px #e5e5e5
-    &.box-erro{
-      border solid 1px #ff7300
-    }
-  }
-  .select-icon {
-    position absolute
-    display block
-    width 9px 
-    height 6px 
-    // border 1px solid red
-    top 50%
-    margin-top -3px
-    right 6px
-    background url(./i/arrow-down.png) no-repeat
-    background-size 8px 4px
-    &.focus {
-      background url(./i/arrow-down-focus.png) no-repeat
-      background-size 8px 4px
-    }
-  }
-  .options-wrapper {
-    position absolute
-    z-index 5
-    top 34px
-    width 120px
-    padding 8px 0
-    max-height 208px
-    background #ffffff
-    border 1px solid #e5e5e5
-    box-shadow 0 0 16px 0 rgba(197, 197, 197, 0.50)
-    overflow auto
-    &.disable-scroll{
-      overflow hidden
-    }
-  }
-  .small-abs {
-    .options-wrapper {
-      text-align left 
-    }
-  }
-  .option-ele {
-    padding 0 14px
-    height 32px
-    line-height 32px
-    font-size 12px
-    color #656565
-    cursor pointer
-    // text-overflow ellipsis
-    overflow hidden
-    // white-space nowrap
-    // @TODO
-    // &:hover,
-    &:focus,
-    &.hover,
-    &:hover{
-      color #316CCB
-      background-color #F1F1F1
-    }
-    &.selected{
-      color #FFF
-      background #316CCB
-      // &:hover, &.hover{
-      //   color #316CCB
-      //   background-color #F1F1F1
-      // }
-    }
-  }
-}
-
-</style>
 
 

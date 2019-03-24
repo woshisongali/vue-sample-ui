@@ -15,7 +15,12 @@ export  const methods = {
   mainHandler (e) {
     
   },
-
+  handlerInput (e) {
+    let value = e.target.value
+    this.chosedItem.label = value
+    this.$emit('input', value)
+    // console.log(value)
+  },
   focusInput (e) {
     this.focusing = true
   },
@@ -33,9 +38,9 @@ export  const methods = {
       return
     }
     let orginOpts = this.orginOpts
-    if (this.busListName) {
-      orginOpts = bus[this.busListName]
-    }
+    // if (this.busListName) {
+    //   orginOpts = bus[this.busListName]
+    // }
     this.opts = orginOpts.filter((o) => {
       let word = this.curval
       if (!word && !this.focusIsFilter) {
@@ -48,8 +53,8 @@ export  const methods = {
   },
 
   selectOption (e) {
-    let target = e.target || e.srcElement
-    let classstr = target.getAttribute('class')
+    const target = e.target || e.srcElement
+    const classstr = target.getAttribute('class')
     if (classstr.indexOf('option-ele') < 0) {
       return
     }
@@ -59,7 +64,7 @@ export  const methods = {
   },
 
   reset () {
-    let closeEle = this.$el.querySelectorAll('.hover')
+    const closeEle = this.$el.querySelectorAll('.hover')
     if(closeEle.length < 1) {
       return
     }
@@ -68,8 +73,8 @@ export  const methods = {
   },
 
   keyboardCtroll (val) {
-    let listInstance = this.listoperaInstance
-    let closeEle = this.$el.querySelectorAll('.hover')
+    const listInstance = this.listoperaInstance
+    const closeEle = this.$el.querySelectorAll('.hover')
     let self = this
     if (!listInstance) {
       return
@@ -77,17 +82,19 @@ export  const methods = {
     switch (val) {
       case 1:
       listInstance.prev(function (num) {
-        self.choseVal = self.opts[num]
+        // self.choseVal = self.opts[num]
+        self.keyChoseItem.num = num
       })
       break
       case 2:
       listInstance.next(function (num) {
-        self.choseVal = self.opts[num]
+        self.keyChoseItem.num = num
       })
       break
       case 'enter':
       if (closeEle.length > 0) {
-        self.curval = self.choseVal.value
+        // self.curval = self.choseVal.value
+        self.choseNum = self.keyChoseItem.num
       }
       self.close()
       self.reset()
