@@ -8,13 +8,13 @@
             :class="[isCustom ? '' : 'dialog-base-width', boxClass ? boxClass : '']"
         :style="style">
           <div class="dialog-header">
-            <slot name="title">
+            <slot name="dialtitle">
               {{title}}
             </slot>
           </div>
 
           <div class="dialog-body">
-            <slot name="body"></slot>
+            <slot name="dialbody"></slot>
           </div>
 
           <p class="dialog-footer" v-show="!isCustom">
@@ -25,7 +25,7 @@
             >取消</button>
             <button class="dialog-minorBtn" 
               @click="confrim($event)"
-             :class="[disdConfirm ? 'disd-btn' : '']">确认</button>
+             :class="[disdConfirm ? 'disd-btn' : '']">{{confirmText}}</button>
           </p>
 
           <span class="dialog-closeBtn" 
@@ -59,7 +59,7 @@ import {
 
 
 export default {
-  name: 'dialog',
+  name: 'FeDialog',
   props: {
     // 在居中的位置上， 另外加入距离顶部的位置
     topDiff: {
@@ -85,6 +85,10 @@ export default {
     disdConfirm: {
       type: Boolean,
       default: false
+    },
+    confirmText: {
+      type: String,
+      default: '确认'
     },
     isCustom: {
       type: Boolean,

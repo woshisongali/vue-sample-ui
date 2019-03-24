@@ -3,42 +3,42 @@
   <Hello></Hello>
   <span class="hover-styl" @click="operaDialog">  fffffclick here to change</span>
   
-  <!-- <check-box v-model="checkVal">
+  <check-box v-model="checkVal" >
     <span>这里是一个选框</span>
-  </check-box> -->
-  <!-- <check-group v-model="checkArr">
+  </check-box>
+  <!-- <check-group v-model="checkArr" cls="new-group-style">
     <check-box label="1">
       <span>这里是一个选框</span>
     </check-box>
     <check-box label="2">
       <span>第二个</span>
     </check-box>
-  </check-group>
-  <check-box v-model="checkVal">
+  </check-group> -->
+  <!-- <check-box v-model="checkVal">
     <span>this is only single checkbtn</span>
   </check-box> -->
   <!-- <testElement></testElement> -->
   <!-- <testSample></testSample> -->
   <!-- <ManualTest v-if="showManual"></ManualTest> -->
-  <!-- <Dialog :visible="showDialog"
+  <Dialog :visible="showDialog"
     @hide="showDialog = false"
     v-if="showDialog"
     @confirm="testConfirm"
     @close="handlerDialog('close')"
     @cancel="handlerDialog('cancel')"
     boxClass="customStyle"
-  > -->
-    <!--如果是自定义窗口，不对下面的内容进行CSS样式处理-->
-    <!-- <div slot="body">
+  >
+    如果是自定义窗口，不对下面的内容进行CSS样式处理
+    <div slot="dialbody">
       <p>the content is just a test</p>
       <span>another is ???</span>
     </div>
-  </Dialog> -->
+  </Dialog>
   <!-- <PhotoAlbum></PhotoAlbum> -->
   <!-- <wag-btn type="primary" size="large">hi</wag-btn> -->
   <!-- <fe-toast icon="loading" v-model="toast1">网络异常，请稍后再试</fe-toast> -->
-  <fe-pagination :current-page="6" :total="300" :page-size="30" 
-  @current-change="handleChange"></fe-pagination>
+  <!-- <fe-pagination :current-page="6" :total="300" :page-size="30" 
+  @current-change="handleChange"></fe-pagination> -->
   <!-- <fe-radio v-model="radioVal" label="1">男</fe-radio>
   <fe-radio v-model="radioVal" label="2">女</fe-radio> -->
 
@@ -48,10 +48,10 @@
 <script type="text/babel">
   import Vue from 'vue'
   import Hello from '../../components/Hello.vue'
-  // import CheckBox from 'components/check-box/CheckBox'
-  // import CheckGroup from 'components/check-group/CheckGroup'
+  import CheckBox from '../../components/check-box/Checkbox.vue'
+  import CheckGroup from '../../components/check-group/CheckGroup.vue'
   // import ManualTest from 'components/manual-mount-example/test.vue'
-  // import Dialog from 'components/dialog/Dialog'
+  import Dialog from '../../components/dialog/Dialog.vue'
   // import PhotoAlbum from 'components/photo-album/test.vue'
   // import WagBtn from 'components/wag-btns/Button.vue'
   // import FeToast from 'components/toast/Toast.vue'
@@ -78,10 +78,10 @@
     },
     components: {
       Hello,
-      // CheckBox,
-      // CheckGroup,
+      CheckBox,
+      CheckGroup,
       // ManualTest,
-      // Dialog,
+      Dialog,
       // PhotoAlbum,
       // WagBtn,
       // FeToast,

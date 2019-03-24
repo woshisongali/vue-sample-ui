@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="[cls ? cls : '']">
       <slot></slot>
   </div>
 </template>
@@ -11,6 +11,11 @@ export default {
     value: {
       type: Array,
       default: []
+    },
+
+    cls: {
+      type: String,
+      default: ''
     }
   },
 

@@ -60,6 +60,7 @@ module.exports = ({
           // template: './pages/program1/index/index.html'
           template: "./pages/home/index.html"
         }), 
+        
         new webpack.ProgressPlugin(),
         new VueLoaderPlugin()
       ]

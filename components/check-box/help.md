@@ -1,4 +1,4 @@
-###示例
+### 示例
 
 ```html example
  <check-box v-model="checkVal">
