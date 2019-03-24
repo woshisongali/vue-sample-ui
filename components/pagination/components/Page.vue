@@ -73,7 +73,7 @@
     computed: {
       pages () {
         const pagesCount = 7
-        const ary = []
+        const arr = []
         const currentPage = Number(this.currentPage)
         const pageCount = Number(this.pageCount)
 
@@ -93,27 +93,27 @@
         if (showPrevMore && !showNextMore) {
           const startPage = pageCount - (pagesCount - 2)
           for (let i = startPage; i < pageCount; i++) {
-            ary.push(i)
+            arr.push(i)
           }
         } else if (!showPrevMore && showNextMore) {
           for (let i = 2; i < pagesCount; i++) {
-            ary.push(i)
+            arr.push(i)
           }
         } else if (showPrevMore && showNextMore) {
           const pagesNum = Math.floor(pagesCount / 2) - 1
           for (let i = currentPage - pagesNum; i <= currentPage + pagesNum; i++) {
-            ary.push(i)
+            arr.push(i)
           }
         } else {
           for (let i = 2; i < pageCount; i++) {
-            ary.push(i)
+            arr.push(i)
           }
         }
 
         this.showPrevMore = showPrevMore
         this.showNextMore = showNextMore
 
-        return ary
+        return arr
       }
     },
     watch: {

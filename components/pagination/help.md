@@ -59,3 +59,5 @@ or
 说明：`currentPage 改变时触发`
 <br/>
 回调参数：`当前 currentPage`
+
+`注意` 在使用白色或灰色时请确保有背景色差

@@ -37,7 +37,8 @@
   <!-- <PhotoAlbum></PhotoAlbum> -->
   <!-- <wag-btn type="primary" size="large">hi</wag-btn> -->
   <!-- <fe-toast icon="loading" v-model="toast1">网络异常，请稍后再试</fe-toast> -->
-  <!-- <fe-pagination :current-page="6" :total="300" :page-size="30" @current-change="handleChange"></fe-pagination> -->
+  <fe-pagination :current-page="6" :total="300" :page-size="30" 
+  @current-change="handleChange"></fe-pagination>
   <!-- <fe-radio v-model="radioVal" label="1">男</fe-radio>
   <fe-radio v-model="radioVal" label="2">女</fe-radio> -->
 
@@ -46,7 +47,7 @@
 </template>
 <script type="text/babel">
   import Vue from 'vue'
-  import Hello from '../../../components/Hello.vue'
+  import Hello from '../../components/Hello.vue'
   // import CheckBox from 'components/check-box/CheckBox'
   // import CheckGroup from 'components/check-group/CheckGroup'
   // import ManualTest from 'components/manual-mount-example/test.vue'
@@ -54,8 +55,8 @@
   // import PhotoAlbum from 'components/photo-album/test.vue'
   // import WagBtn from 'components/wag-btns/Button.vue'
   // import FeToast from 'components/toast/Toast.vue'
-  // import FePagination from 'components/pagination/pagination.js'
-  // import FeRadio from 'components/radio/radio.vue'
+  import FePagination from '../../components/pagination/pagination.js'
+  import FeRadio from '../../components/radio/radio.vue'
   
   export default{
     data () {
@@ -76,7 +77,7 @@
       }, 3000)
     },
     components: {
-      Hello
+      Hello,
       // CheckBox,
       // CheckGroup,
       // ManualTest,
@@ -84,8 +85,8 @@
       // PhotoAlbum,
       // WagBtn,
       // FeToast,
-      // FePagination,
-      // FeRadio
+      FePagination,
+      FeRadio
     },
     methods: {
       chgManual () {
