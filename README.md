@@ -5,4 +5,4 @@ vue component
 
 #### check-box
 
-[选择框](./components/check-box/held.md)
+[选择框](./components/check-box/help.md)
