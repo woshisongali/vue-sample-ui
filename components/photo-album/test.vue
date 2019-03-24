@@ -2,7 +2,7 @@
   <div>
     <!-- 采用事件代理方法调用 -->
     <ul class="img-list" @click="delegation($event, potoList1)">
-      <li v-for="(item, index) in potoList1" >
+      <li v-for="(item, index) in potoList1" :key="item.id">
         <div class="img-wrapper">
           <img :src="item.smallSrc" :index="index" zoomImg="yes" />
         </div>
@@ -11,7 +11,7 @@
 
     <!-- 直接在缩略图上调用 -->
     <ul class="img-list">
-      <li v-for="(item, index) in potoList2" >
+      <li v-for="(item, index) in potoList2" :key="item.id">
         <div class="img-wrapper" @click="directHandler(potoList2, index)">
           <img :src="item.smallSrc" alt=""/>
         </div>
@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import photoAlbum from './index'
+import photoAlbum from './index.vue'
 export default {
   data () {
     return {
@@ -42,17 +42,17 @@ export default {
         {
           "src": "//img4.imgtn.bdimg.com/it/u=271516057,1092390759&fm=26&gp=0.jpg",
           "smallSrc": "//img4.imgtn.bdimg.com/it/u=271516057,1092390759&fm=26&gp=0.jpg",
-          "id": "1"
+          "id": "4"
         },
         {
           "src": "//timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542793508&di=a00d00cdda11b6161426958050268146&imgtype=jpg&er=1&src=http%3A%2F%2Fdingyue.nosdn.127.net%2F01v1M9Wu%3DxzYRydx5r5W7cX3xdxRNSxNy7fceAlaWR1Yo1527652098513.gif",
           "smallSrc": "//timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542793508&di=a00d00cdda11b6161426958050268146&imgtype=jpg&er=1&src=http%3A%2F%2Fdingyue.nosdn.127.net%2F01v1M9Wu%3DxzYRydx5r5W7cX3xdxRNSxNy7fceAlaWR1Yo1527652098513.gif",          
-          "id": "2"
+          "id": "5"
         },
         {
           "src": "//timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542200719967&di=dd63f4c856ee2108223ad66d41b547e4&imgtype=0&src=http%3A%2F%2Fcdnsfb.soufunimg.com%2Fviewimage%2F1%2F2017_4%2F12%2FM16%2F16%2F91a41a85e08144d8933a98c228aaade9%2F600x600.jpg",
           "smallSrc": "//timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542200719967&di=dd63f4c856ee2108223ad66d41b547e4&imgtype=0&src=http%3A%2F%2Fcdnsfb.soufunimg.com%2Fviewimage%2F1%2F2017_4%2F12%2FM16%2F16%2F91a41a85e08144d8933a98c228aaade9%2F600x600.jpg",          
-          "id": "3"
+          "id": "6"
         }
       ]
     }

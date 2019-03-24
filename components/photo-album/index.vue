@@ -22,10 +22,10 @@
   export default{
     name: 'zoomImg',
     props: {
-      imgSrc: {
-        type: String,
-        default: ''
-      },
+      // imgSrc: {
+      //   type: String,
+      //   default: ''
+      // },
       ismask: {
         type: String,
         default: 'yes'

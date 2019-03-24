@@ -14,3 +14,35 @@ vue component
 #### dialog
 
 [模态窗](./components/dialog/help.md)
+
+#### manula-mount-expample
+
+[手动绑定组件测试用例](./components/manual-mount-example/help.md)
+
+#### pagination
+
+[分页组件](./components/pagination/help.md)
+
+#### photo-album
+
+[相册](./components/photo-album/help.md)
+
+#### poper-hint
+
+[气泡提示](./components/poper-hint/help.md)
+
+#### radio
+
+[单选](./components/radio/help.md)
+
+#### toast
+
+[toast](./components/toast/help.md)
+
+#### wag-btns
+
+[按钮风格](./components/wag-btns/help.md)
+
+### 附加
+
+util基础工具

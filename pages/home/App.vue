@@ -20,7 +20,7 @@
   <!-- <testElement></testElement> -->
   <!-- <testSample></testSample> -->
   <!-- <ManualTest v-if="showManual"></ManualTest> -->
-  <Dialog :visible="showDialog"
+  <!-- <Dialog :visible="showDialog"
     @hide="showDialog = false"
     v-if="showDialog"
     @confirm="testConfirm"
@@ -33,8 +33,8 @@
       <p>the content is just a test</p>
       <span>another is ???</span>
     </div>
-  </Dialog>
-  <!-- <PhotoAlbum></PhotoAlbum> -->
+  </Dialog> -->
+  <PhotoAlbum></PhotoAlbum>
   <!-- <wag-btn type="primary" size="large">hi</wag-btn> -->
   <!-- <fe-toast icon="loading" v-model="toast1">网络异常，请稍后再试</fe-toast> -->
   <!-- <fe-pagination :current-page="6" :total="300" :page-size="30" 
@@ -52,7 +52,7 @@
   import CheckGroup from '../../components/check-group/CheckGroup.vue'
   // import ManualTest from 'components/manual-mount-example/test.vue'
   import Dialog from '../../components/dialog/Dialog.vue'
-  // import PhotoAlbum from 'components/photo-album/test.vue'
+  import PhotoAlbum from '../../components/photo-album/test.vue'
   // import WagBtn from 'components/wag-btns/Button.vue'
   // import FeToast from 'components/toast/Toast.vue'
   import FePagination from '../../components/pagination/pagination.js'
@@ -82,7 +82,7 @@
       CheckGroup,
       // ManualTest,
       Dialog,
-      // PhotoAlbum,
+      PhotoAlbum,
       // WagBtn,
       // FeToast,
       FePagination,

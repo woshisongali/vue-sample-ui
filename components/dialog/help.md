@@ -13,7 +13,7 @@
     @confirm="testConfirm"
     @close="handlerDialog('close')"
     @cancel="handlerDialog('cancle')"
-  >
+  ></Dialog>
 ```
 visible表示当前窗口是否可显示， 为了确保改变量的一致性。在窗口关闭时需修改调用父层修改props，所以需在父层绑定`@hide="showDialog = false"`。
 <br/>
