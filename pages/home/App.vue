@@ -34,13 +34,22 @@
       <span>another is ???</span>
     </div>
   </Dialog> -->
-  <PhotoAlbum></PhotoAlbum>
+  <!-- <PhotoAlbum></PhotoAlbum> -->
   <!-- <wag-btn type="primary" size="large">hi</wag-btn> -->
   <!-- <fe-toast icon="loading" v-model="toast1">网络异常，请稍后再试</fe-toast> -->
   <!-- <fe-pagination :current-page="6" :total="300" :page-size="30" 
   @current-change="handleChange"></fe-pagination> -->
   <!-- <fe-radio v-model="radioVal" label="1">男</fe-radio>
   <fe-radio v-model="radioVal" label="2">女</fe-radio> -->
+
+  <down-select
+        :orginOpts="productnameOpts"
+        type="hrdProdName"
+        v-model="productName"
+        validateRule="required|max:30"
+        indexKey="indexKey"
+        asycn
+      ></down-select>
 
 </div>
   
@@ -57,6 +66,7 @@
   // import FeToast from 'components/toast/Toast.vue'
   import FePagination from '../../components/pagination/pagination.js'
   import FeRadio from '../../components/radio/radio.vue'
+  import DownSelect from '../../components/down-select/DownSelect.vue'
   
   export default{
     data () {
@@ -68,7 +78,12 @@
         showDialog: false,
         toast1: true,
         radioVal: "1",
-        checkArr: ['2']
+        checkArr: ['2'],
+        productName: '22',
+        productnameOpts: [
+          {value: '1', label: 'the first'},
+          {value: '2', label: 'the second'}
+        ]
       }
     },
     mounted () {
@@ -86,7 +101,8 @@
       // WagBtn,
       // FeToast,
       FePagination,
-      FeRadio
+      FeRadio,
+      DownSelect
     },
     methods: {
       chgManual () {
