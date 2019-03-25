@@ -1,5 +1,6 @@
 <template>
   <div class="down-select-mod" @click="mainHandler($event)">
+    <slot></slot>
     <div class="select-inners" 
     :style="divStyle"
     :class="[extroClass ? extroClass : '']">

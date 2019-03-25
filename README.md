@@ -43,6 +43,10 @@ vue component
 
 [按钮风格](./components/wag-btns/help.md)
 
+#### down-select 
+
+[下拉选框及模糊搜索](./components/down-select/help.md)
+
 ### 附加
 
 util基础工具
