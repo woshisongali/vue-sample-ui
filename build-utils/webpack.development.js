@@ -1,17 +1,46 @@
 const webpack = require('webpack')
 const server = require('./server')
+const serverConfig = require('./config')
+const {clone} = require('./util')
 // require('')
 const mockConfig = {
   '/birds': './birds',
   '/downTest': '../components/down-select/mock/product'
 }
+const originalProxy = {
+
+}
+function transformMockToProxy () {
+  let mockObj = {
+  }
+  Object.keys(mockConfig).map(key => {
+    mockObj[key] = 'http://localhost:' + serverConfig.SERVER_PORT
+  })
+  return mockObj
+}
+
+const transformedMock = transformMockToProxy()
+const curProxy = (function () {
+  let proxy = clone(originalProxy)
+  Object.keys(transformedMock).map(key => {
+    if (proxy[key] === void 0 || proxy[key] === null) {
+      proxy[key] = transformedMock[key]
+    }
+  })
+  return proxy
+})()
+console.log(curProxy)
+
 module.exports = () => ({
   devServer: {
-    port: 7000,
-    proxy: {
-    },
+    port: serverConfig.WEBPACK_PORT,
+    // proxy: {
+    //   '/birds': 'http://localhost:5000',
+    //   '/downTest': 'http://localhost:5000'
+    // },
+    proxy: curProxy,
     before (app) {
-      console.log('============= before server')
+      // console.log('============= before server')
       server.start(mockConfig)
     }
   },

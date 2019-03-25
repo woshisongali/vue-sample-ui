@@ -1,6 +1,7 @@
 
 var express = require('express')
 var bodyParser = require('body-parser');
+const serverConfig = require('./config')
 // const birds = require('./birds')
 var app = express()
 // module.exports = app
@@ -23,7 +24,7 @@ module.exports = {
       console.error(err)
     }
     
-    const theListener = app.listen(5000, function () {
+    const theListener = app.listen(serverConfig.SERVER_PORT, function () {
       let host = theListener.address().address
       let port = theListener.address().port
       console.log("应用实例，访问地址为 http://", host, port)
