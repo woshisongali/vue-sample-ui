@@ -1,5 +1,6 @@
 <template>
   <div class="down-select-mod" @click="mainHandler($event)">
+    <slot></slot>
     <div class="select-inners" 
     :style="divStyle"
     :class="[extroClass ? extroClass : '']">
@@ -28,9 +29,10 @@
         <!-- <li class="option-ele selected">ddddd</li>
         <li class="option-ele">jjjjj</li> -->
         <li class="option-ele"
-        :class="{'selected': chosedItem.value === item.value, 'hover': index == keyChoseItem.num}"
+        :class="{'selected': chosedItem.label === item.label, 'hover': index == keyChoseItem.num}"
          v-for="(item, index) in opts" 
          :downuuid="downUUid"
+         :data-index="index"
          :key="index">
           {{item.label}}
         </li>
@@ -82,10 +84,7 @@ export default {
       type: String,
       default: ''
     },
-    showIcon: {
-      type: Boolean,
-      default: false
-    },
+  
     readOnlyStr: {
       type: Boolean,
       default: false
@@ -96,7 +95,7 @@ export default {
       type: Boolean,
       default: false
     },
-    // 对于固定的下拉数组不进行筛选
+    // 是否对数组进行筛选过滤
     isFilter: {
       type: Boolean,
       default: false
@@ -108,10 +107,6 @@ export default {
     },
     value: {
       type: [String, Number]
-    },
-    focusIsFilter: {
-      type: Boolean,
-      default: false
     }
   },
   data () {
@@ -119,15 +114,14 @@ export default {
       msg: 'test',
       curval: null,
       focusing: false,
-      // notFilter: false,
       openList: false,
       opts: [],
       downUUid: getDownSelectuuid(),
-      choseNum: null,
+      choseNum: -1,
       isScroll: false,
       firstFocus: false,
       keyChoseItem: {
-        num: 0
+        num: -1
       },
       choseVal: {},
       chosedItem: {
@@ -138,13 +132,11 @@ export default {
   },
 
   components: {
-    // 'popert-hint': PopertHint
   },
   computed: {
   },
 
   created () {
-    // this.listoperaInstance = null
   },
   mounted () {
     let eventFunc = function (e) {
@@ -174,14 +166,15 @@ export default {
   },
 
   watch: {
-    curval: {
+    'chosedItem.label': {
       immediate: true,
       handler (val, oldval) {
+        this.$emit('input', val)
         // 对于异步调用方案
         if (this.asycn && this.focusing) {
-          // this.$parent.changeWorder(val, this.type)
+          this.$emit('asycnSendData', val)
         }
-        // this.$emit('input', this.chosedItem.value)
+        this.filterOpts()
       }
     },
 
@@ -190,7 +183,6 @@ export default {
       handler (val, oldval) {
         if (this.asycn && val && !this.firstFocus) {
           this.firstFocus = true
-          // this.$parent.changeWorder(this.curval, this.type)
         }
       }
     },
@@ -209,6 +201,7 @@ export default {
           this.listoperaInstance = new ListOpera(val)
         } else {
           this.listoperaInstance.setList(val, -1)
+          this.keyChoseItem.num = -1
         }
       }
     },

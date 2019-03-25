@@ -2,7 +2,6 @@ import {
   trim
 } from '../../util/util.js'
 import ListOpera from './listOpera.js'
-import {bus} from './bus.js'
 import {
   offsetPosition, 
   eleSize
@@ -41,17 +40,13 @@ export  const methods = {
       return
     }
     let orginOpts = this.orginOpts
-    // if (this.busListName) {
-    //   orginOpts = bus[this.busListName]
-    // }
+    
     this.opts = orginOpts.filter((o) => {
-      let word = this.curval
-      if (!word && !this.focusIsFilter) {
-        return true
-      } else if (!word) {
+      let word = this.chosedItem.label
+      if (!word) {
         return false
       }
-      return o.value.indexOf(word) > -1
+      return o.label.indexOf(word) > -1
     })
   },
 
@@ -61,11 +56,8 @@ export  const methods = {
     if (classstr.indexOf('option-ele') < 0) {
       return
     }
-    // let value = trim(target.innerHTML)
-    // this.curval = value
     let num = target.getAttribute('data-index')
     this.choseNum = num
-    // console.log(value) 
   },
 
   reset () {
@@ -87,7 +79,6 @@ export  const methods = {
     switch (val) {
       case 1:
       listInstance.prev(function (num) {
-        // self.choseVal = self.opts[num]
         self.keyChoseItem.num = num
       })
       break
@@ -98,7 +89,6 @@ export  const methods = {
       break
       case 'enter':
       if (closeEle.length > 0) {
-        // self.curval = self.choseVal.value
         self.choseNum = self.keyChoseItem.num
       }
       self.close()

@@ -115,7 +115,7 @@ export const debounce = (func, wait, immediate) => {
   let timeout, args, context, timestamp, result
 
   let later = function() {
-    let last = Data.now() - timestamp
+    let last = Date.now() - timestamp
 
     if (last < wait && last >= 0) {
       timeout = setTimeout(later, wait - last);
@@ -131,7 +131,7 @@ export const debounce = (func, wait, immediate) => {
   return function() {
     context = this
     args = arguments
-    timestamp = Data.now()
+    timestamp = Date.now()
     let callNow = immediate && !timeout
     if (!timeout) timeout = setTimeout(later, wait)
     if (callNow) {

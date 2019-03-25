@@ -29,7 +29,6 @@ const curProxy = (function () {
   })
   return proxy
 })()
-console.log(curProxy)
 
 module.exports = () => ({
   devServer: {

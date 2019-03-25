@@ -1,6 +1,5 @@
 <template>
   <div class="down-select-mod" @click="mainHandler($event)">
-     {{chosedItem}}
     <div class="select-inners" 
     :style="divStyle"
     :class="[extroClass ? extroClass : '']">
@@ -55,7 +54,6 @@ import {
   clone
 } from '../util/util.js'
 
-// import { mapFields } from 'vee-validate'
 import ListOpera from './js/listOpera.js'
 
 import {
@@ -98,22 +96,20 @@ export default {
       msg: 'test',
       curval: null,
       focusing: false,
-      // notFilter: false,
       openList: false,
       opts: [],
       downUUid: getDownSelectuuid(),
-      choseNum: null,
+      choseNum: -1,
       isScroll: false,
       firstFocus: false,
       keyChoseItem: {
-        num: 0
+        num: -1
       },
       choseVal: {}
     }
   },
 
   components: {
-    // 'popert-hint': PopertHint
   },
   computed: {
     chosedItem () {
@@ -123,25 +119,25 @@ export default {
         value: '',
         label: ''
       }
-      let choseNum
+      let choseNum = -1
       opts.forEach((item, index) => {
         if (String(item.value) === String(this.value)) {
           choseNum = index
           return false
         }
       })
-      if (choseNum !== void 0 && this.choseNum === null) {
+      if (~choseNum && this.choseNum < 0) {
         this.choseNum = choseNum
       }
-      if (this.choseNum !== void 0 && this.choseNum !== null)
-      chosed = clone(opts[this.choseNum])
+      if (~this.choseNum) {
+        chosed = clone(opts[this.choseNum])
+      }
       Vue.observable(chosed)
       return chosed
     }
   },
 
   created () {
-    // this.listoperaInstance = null
   },
   mounted () {
     let eventFunc = function (e) {
@@ -181,7 +177,6 @@ export default {
       handler (val, oldval) {
         if (this.asycn && val && !this.firstFocus) {
           this.firstFocus = true
-          // this.$parent.changeWorder(this.curval, this.type)
         }
       }
     },
