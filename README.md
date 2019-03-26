@@ -47,6 +47,9 @@ vue component
 
 [下拉选框及模糊搜索](./components/down-select/help.md)
 
+#### city
+[地址选择](./components/city/help.md)
+
 ### 附加
 
 util基础工具

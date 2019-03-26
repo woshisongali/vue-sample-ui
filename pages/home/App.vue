@@ -42,7 +42,12 @@
   <!-- <fe-radio v-model="radioVal" label="1">男</fe-radio>
   <fe-radio v-model="radioVal" label="2">女</fe-radio> -->
 
-  <down-select-test></down-select-test>
+  <!-- <down-select-test></down-select-test> -->
+  <city-area 
+      v-model="cityAddr"
+      placeholder="请选择"
+    >
+    </city-area>
 
 </div>
   
@@ -60,6 +65,7 @@
   import FePagination from '../../components/pagination/pagination.js'
   import FeRadio from '../../components/radio/radio.vue'
   import DownSelectTest from '../../components/down-select/test.vue'
+  import CityArea from '../../components/city/City.vue'
   
   export default{
     data () {
@@ -71,7 +77,8 @@
         showDialog: false,
         toast1: true,
         radioVal: "1",
-        checkArr: ['2']
+        checkArr: ['2'],
+        cityAddr: '北京市'
       }
     },
     mounted () {
@@ -90,7 +97,8 @@
       // FeToast,
       FePagination,
       FeRadio,
-      DownSelectTest
+      DownSelectTest,
+      CityArea
     },
     methods: {
       chgManual () {
