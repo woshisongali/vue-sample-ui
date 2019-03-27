@@ -49,6 +49,9 @@
     >
     </city-area>
 
+  <input v-validate="'required|email'" name="email" type="text">
+  <span>{{ errors.first('email') }}</span>  
+
 </div>
   
 </template>
@@ -78,7 +81,8 @@
         toast1: true,
         radioVal: "1",
         checkArr: ['2'],
-        cityAddr: '北京市'
+        cityAddr: '北京市',
+        email: ''
       }
     },
     mounted () {

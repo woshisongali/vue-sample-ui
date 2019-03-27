@@ -50,6 +50,9 @@ vue component
 #### city
 [地址选择](./components/city/help.md)
 
+#### veeValidate
+[veeValidate校验库](./components/vee-validate/help.md)
+
 ### 附加
 
 util基础工具

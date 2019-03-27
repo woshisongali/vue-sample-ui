@@ -1,6 +1,6 @@
 
 import Vue from 'vue'
-import {checkLegalWords} from './ajax'
+// import {checkLegalWords} from './ajax'
 import {
   ValidationProvider, Validator, install
   as VeeValidate
@@ -13,20 +13,24 @@ import {
   max_value,
   min_value,
   numeric,
-  is
+  is,
+  email
 } from 'vee-validate/dist/rules.esm.js'
 
 // import ar from 'vee-validate/dist/locale/ar'
 // Validator.localize('ar', ar)
-import zh_CN from 'vee-validate/dist/locale/zh_CN'
+import zh_CN from './zh_CN.js'
 // Validator.localize('zh_CN', zh_CN)
 
-Vue.use(VeeValidate, {
-  locale: 'zh_CN',
-  dictionary: {
-    zh_CN: zh_CN
-  }
-})
+// Vue.use(VeeValidate, {
+//   locale: 'zh_CN',
+//   dictionary: {
+//     zh_CN: zh_CN
+//   }
+// })
+Vue.use(VeeValidate)
+Validator.localize('zh_CN', zh_CN)
+
 Vue.component('ValidationProvider', ValidationProvider)
 
 
@@ -37,6 +41,8 @@ Validator.extend('numeric', numeric)
 Validator.extend('max_value', max_value)
 Validator.extend('min_value', min_value)
 Validator.extend('is', is)
+Validator.extend('email', email)
+
 // simple example
 Validator.extend('required', {
   validate: value => {
@@ -81,7 +87,7 @@ Validator.extend('isbn', {
 
 // 异步校验
 
-Validator.extend('promisetest', {
+Validator.extend('promiseTest', {
   validate: (value)=> {
     return new Promise(resolve => {
       if (value.length > 5) {
